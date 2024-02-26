@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part One</title>
+    <style>
+        /* Animation for background color change */
+        @keyframes bloodier {
+            0% { background-color: white; }
+            100% { background-color: darkred; }
+        }
+        body {
+            background-color: white;
+            margin: 0;
+            overflow: hidden; /* To prevent scrolling during animation */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            animation: bloodier 50s linear forwards; /* Background color change animation */
+        }
+        img#jumpScareImage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Ensure the image covers the entire screen */
+            display: none;
+        }
+        button#jumpScareButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            display: none; /* Initially hidden */
+        }
+        input#nameInput {
+            display: block;
+            margin-bottom: 10px;
+            width: 242px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Jumpscare content -->
+    <input type="text" id="nameInput" placeholder="Want To Play A Game? Enter Your Name">
+    <button id="jumpScareButton"></button> <!-- Remove inline style -->
+    <img id="jumpScareImage" src="img/jigsaw.gif" alt="Jump Scare Image">
+
+    <!-- Include jumpscare JavaScript -->
+    <script>
+        // Function to generate a random name
+        function generateRandomName() {
+            const names = ['victim', 'subject', 'player'];
+            return names[Math.floor(Math.random() * names.length)];
+        }
+
+        // Function to show the jumpscare image fullscreen
+        function showJumpScareImage() {
+            let jumpScareImage = document.getElementById('jumpScareImage');
+            jumpScareImage.style.display = 'block';
+            jumpScareImage.setAttribute('loop', 'false'); // Stop GIF from looping
+            setTimeout(function(){
+                jumpScareImage.style.display = 'none';
+                // Set the background color to white after the jump scare
+                document.body.style.backgroundColor = 'white';
+                // Redirect to another page after jump scare
+                let name = document.getElementById('nameInput').value.trim();
+                if (name === '') {
+                    // If no name is entered, generate a random name
+                    name = generateRandomName();
+                }
+                localStorage.setItem('enteredName', name);
+                window.location.href = '/stuff/index.html';
+            }, 1380);
+        }
+
+        // Update button text and show the jump scare button when name is entered
+        document.getElementById('nameInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                let name = document.getElementById('nameInput').value.trim();
+                if (name === '') {
+                    // If no name is entered, generate a random name
+                    name = generateRandomName();
+                }
+                // Show the jump scare button
+                let button = document.getElementById('jumpScareButton');
+                button.textContent = `Want to play a game, ${name}?`;
+                button.style.display = 'block'; // Ensure the button is displayed
+                // Show the jump scare image
+                showJumpScareImage();
+            }
+        });
+
+        // Show the jump scare image when the button is clicked
+        document.getElementById('jumpScareButton').addEventListener('click', function() {
+            // Show the jump scare image
+            showJumpScareImage();
+        });
+
+         // Show the jump scare image after 50 seconds
+         setTimeout(function(){
+            showJumpScareImage();
+        }, 50000); // 50 seconds in milliseconds
+    </script>
+</body>
+</html>

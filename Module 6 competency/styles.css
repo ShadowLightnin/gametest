@@ -1,0 +1,42 @@
+body {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+@keyframes bloodier {
+    0% { background-color: white; }
+    100% { background-color: darkred; }
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+#nameInput {
+    padding: 10px;
+    font-size: 18px;
+    width: 250px;
+    margin-bottom: 10px; /* Added to create space between elements */
+}
+
+#jumpScareButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    display: block;
+    margin-top: 10px; /* Adjust to create space between elements */
+}
+
+#jumpScareImage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    display: none;
+}

@@ -1,0 +1,90 @@
+body {
+    background-color: white;
+    font-size: x-large;
+    font-family: sans-serif;
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+h2 {
+    color: blue;
+    text-align: center;
+}
+
+/* guessing game */
+input[type='number'] {
+    font-size: x-large;
+}
+
+p#result {
+    padding: 3px;
+    font-size: xx-large;
+}
+
+.tooBig {
+    background-color: pink;
+    color: blue;
+}
+
+.tooSmall {
+    background-color: lightblue;
+    color: blue;
+}
+
+.tooMany {
+    background-color: red;
+    color: black;
+}
+
+.justRight {
+    background-color: lightgreen;
+    color: green;
+}
+
+/* tabs */
+.tabs {
+    width: 50%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.tabs > ul {
+    padding: 0;
+}
+
+.tabs .trigger {
+    list-style-type: none;
+    background: #cac6c6;
+    border-radius: 6px;
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 6px;
+}
+
+.tabs .trigger.active {
+    background: #ff6565;
+    color: white;
+}
+
+.tabs .content {
+    background: white;
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 6px;
+    display: none;
+}
+
+.tabs .content.active {
+    display: block;
+}
+
+/* Add this CSS to hide the name input and button by default */
+#nameInput,
+#jumpScareButton {
+    display: none;
+}

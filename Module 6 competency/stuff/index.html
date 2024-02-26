@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Two Games</title>
+</head>
+
+<body>
+    <h1 id="enteredName">
+        <p id="userName">Name</p>
+        <p>Shall We Play A Game?</p>
+    </h1>
+
+    <div class="tabs">
+        <ul>
+            <li class="trigger" data-target="#coinFlip">Coin Flip</li>
+            <li class="trigger" data-target="#guessingGame">Guessing Game</li>
+        </ul>
+        <div class="content" id="coinFlip">
+            <h3>Coin Flip</h3>
+            <div id="coinResult">
+                <button id="headsButton" onclick="tossCoin('Heads')">Heads (0/10)</button>
+                <button id="tailsButton" onclick="tossCoin('Tails')">Tails (0/10)</button><br>
+                <br><img id="coinImage" src="../img/both.jpg" alt="Coin Image">
+                <div id="coinTossResult"></div>
+            </div>
+        </div>
+        <div class="content" id="guessingGame">
+            <h3>Guessing Game</h3>
+            <p>I have selected a random number between 1 and 100.<br>
+                See if you can guess it in 10 turns or fewer.<br>
+                I'll tell you if your guess was to. high or too low.
+            </p>
+            <form id="guessForm">
+                <label for="userGuess">Enter a guess:</label>
+                <input type="text" id="userGuess" name="userGuess" pattern="[0-9]+" min="1" max="100" required>
+            </form>
+            <p id="previousGuesses">Previous guesses:</p>
+            <p id="result"><span id="resultText"></span></p>
+            <button id="newGameButton" style="display: none;">Start New Game</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+    <script>
+        // Check if name is stored in localStorage, if not, generate a random name
+        let enteredName = localStorage.getItem('enteredName');
+        if (!enteredName) {
+            const names = ['Victim', 'Subject', 'Player'];
+            enteredName = names[Math.floor(Math.random() * names.length)];
+            localStorage.setItem('enteredName', enteredName);
+        }
+        document.getElementById('userName').textContent = enteredName;
+    </script>
+</body>
+</html>
+
+<!-- https://javascript-tutor.net/index.php/playing-video-using-javascript/#google_vignette -->

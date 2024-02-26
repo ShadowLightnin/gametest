@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <style>
+         @keyframes bloodier {
+            0% { background-color: white; }
+            100% { background-color: darkred; }
+        }
+        body {
+            background-color: white;
+            margin: 0;
+            overflow: hidden; /* To prevent scrolling during animation */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            animation: bloodier 20s linear forwards; /* Background color change animation */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        #timer {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body> 
+    <div id="timer">20</div>
+    <button onclick="redirectToVideoPage()">Try Again</button>
+    <button onclick="redirectToNextPage()">Accept Fate</button>
+
+    <script>
+        var timeLeft = 20;
+
+        // Function to update the timer and redirect to the video page
+        function redirectToVideoPage() {
+            clearInterval(timerInterval);
+            window.location.href = "../stuff/index.html";
+        }
+
+        // Function to redirect to the next page
+        function redirectToNextPage() {
+            clearInterval(timerInterval);
+            window.location.href = "scarecrowvid.html";
+        }
+
+        // Update the timer every second
+        var timerInterval = setInterval(function() {
+            timeLeft--;
+            document.getElementById("timer").textContent = timeLeft;
+
+            // If timer runs out, redirect to the next page
+            if (timeLeft <= 0) {
+                redirectToNextPage();
+            }
+
+            // Change timer color to red when 10 seconds left
+            if (timeLeft <= 10) {
+                document.getElementById("timer").style.color = "red";
+            }
+        }, 1000);
+    </script>
+</body> 
+</html>
